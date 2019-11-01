@@ -5,7 +5,7 @@ export default class App extends React.Component {
     render() {
         return (
           <>
-            <h1>Veterinary Clinic</h1>
+            
             <Form />
           </>
         )
