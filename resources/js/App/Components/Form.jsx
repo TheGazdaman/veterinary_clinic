@@ -7,17 +7,73 @@ export default class Form extends React.Component {
 
     this.state = {
       doctor_id: 0,
-      owner_id: null,
-      name: null,
-      breed: null,
-      age: null,
-      weight: null,
-      photo_path: null
-
+      owner_id: 0,
+      name: '',
+      breed: '',
+      age: 0,
+      weight: 0,
+      photo_path: '',
+      message: ''
     };
 
     
   }
+
+  handleDoctorIdChange = (event) => {
+
+    // console.log(this.state.doctor_id);
+    
+
+    this.setState({
+        doctor_id: event.target.value
+    });
+  }
+
+  handleOwnerIdChange = () => {
+
+    console.log(this.state.owner_id);
+
+    this.setState({
+        owner_id: document.querySelector("#owner_id").value
+    });
+  }
+
+  handleNameChange = () => {
+
+    this.setState({
+        name: document.querySelector("#name").value
+    });
+  }
+
+  handleBreedChange = () => {
+
+    this.setState({
+        breed: document.querySelector("#breed").value
+    });
+  }
+
+  handleAgeChange = () => {
+
+    this.setState({
+        age: document.querySelector("#age").value
+    });
+  }
+
+  handleWeightChange = () => {
+
+    this.setState({
+        weight: document.querySelector("#weight").value
+    });
+  }
+
+  handlePhotoPathChange = () => {
+
+    this.setState({
+        photo_path: document.querySelector("#photo_path").value
+    });
+  }
+
+
 
   handleFormSubmit = (event) => {
 
@@ -43,6 +99,10 @@ export default class Form extends React.Component {
     })
 
     .then(response => response.json())
+    .then(data => { this.setState({message: data.message} )
+
+    })
+    
 
 }
   
@@ -50,20 +110,24 @@ export default class Form extends React.Component {
   render() {
     return (
         <>
+
+        <div>{this.state.message}</div>
+
+
         <form onSubmit={this.handleFormSubmit}>
-            <input type="number" id="doctor_id" placeholder="Doctor's ID" value={this.state.doctor_id} />
+            <input type="number" id="doctor_id" placeholder="Doctor's ID" value={this.state.doctor_id} onChange={this.handleDoctorIdChange} />
             <br/>
-            <input type="number" id="owner_id" placeholder="Owner's ID" value={this.state.owner_id} />
+            <input type="number" id="owner_id" placeholder="Owner's ID" value={this.state.owner_id} onChange={this.handleOwnerIdChange}/>
             <br/>
-            <input type="text" id="name" placeholder="Pet's name" value={this.state.name} />
+            <input type="text" id="name" placeholder="Pet's name" value={this.state.name} onChange={this.handleNameChange} />
             <br/>
-            <input type="text" id="breed" placeholder="Breed" value={this.state.breed} />
+            <input type="text" id="breed" placeholder="Breed" value={this.state.breed} onChange={this.handleBreedChange} />
             <br/>
-            <input type="number" id="age" placeholder="Pet's age" value={this.state.age} />
+            <input type="number" id="age" placeholder="Pet's age" value={this.state.age} onChange={this.handleAgeChange} />
             <br/>
-            <input type="number" id="weight" placeholder="Weight" value={this.state.weight} />
+            <input type="number" id="weight" placeholder="Weight" value={this.state.weight} onChange={this.handleWeightChange} />
             <br/>
-            <input type="text" id="photo_path" placeholder="Photo path" value={this.state.photo_path} />
+            <input type="text" id="photo_path" placeholder="Photo path" value={this.state.photo_path} onChange={this.handlePhotoPathChange} />
             <br/>
             <br/>
             <button type="submit" value="submit">Submit</button>

@@ -20,5 +20,10 @@ class AnimalController extends Controller
         $animal->photo_path = $request->input('photo_path');
         $animal->save();
 
+        return [
+            'status' => 'success',
+            'message' => 'The data was successfully saved on the server.'
+     ];
+
     }
 }
