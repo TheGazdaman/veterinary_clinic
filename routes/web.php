@@ -16,3 +16,5 @@ Route::get('/', function () {
 });
 
 Route::get('/owner', 'OwnerController@index');
+
+Route::post('/store', 'AnimalController@store');

@@ -6,7 +6,7 @@ export default class Form extends React.Component {
     super(props);
 
     this.state = {
-      doctor_id: null,
+      doctor_id: 0,
       owner_id: null,
       name: null,
       breed: null,
@@ -18,12 +18,39 @@ export default class Form extends React.Component {
 
     
   }
+
+  handleFormSubmit = (event) => {
+
+    event.preventDefault();
+
+    fetch("/store", {
+        method: 'POST',
+        headers: {
+            'Accept':       'application/json',
+            'Content-type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+        body: JSON.stringify({
+            doctor_id: this.state.doctor_id,
+            owner_id: this.state.owner_id,
+            name: this.state.name,
+            breed: this.state.breed,
+            age: this.state.age,
+            weight: this.state.weight,
+            photo_path: this.state.photo_path
+        })
+        
+    })
+
+    .then(response => response.json())
+
+}
   
 
   render() {
     return (
         <>
-        <form onSubmit={this.handleFormSubmit} method="post">
+        <form onSubmit={this.handleFormSubmit}>
             <input type="number" id="doctor_id" placeholder="Doctor's ID" value={this.state.doctor_id} />
             <br/>
             <input type="number" id="owner_id" placeholder="Owner's ID" value={this.state.owner_id} />
