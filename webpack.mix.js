@@ -18,7 +18,7 @@ mix.options({
 });
  
 if (!mix.inProduction()) {
-    mix.webpackConfig(
+    mix.webpackConfig({
         devtool: 'source-map'
     })
     .sourceMaps()
