@@ -7,7 +7,8 @@ use App\Animal;
 
 
 class AnimalController extends Controller
-{
+{  
+
     public function store(Request $request)
     {
         $animal = new Animal;
@@ -24,6 +25,11 @@ class AnimalController extends Controller
             'status' => 'success',
             'message' => 'The data was successfully saved on the server.'
      ];
+
+    }
+
+    public function delete()
+    {
 
     }
 }

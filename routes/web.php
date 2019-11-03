@@ -18,3 +18,11 @@ Route::get('/', function () {
 Route::get('/owner', 'OwnerController@index');
 
 Route::post('/store', 'AnimalController@store');
+
+Route::get('/search', 'OwnerController@search');
+
+Route::get('/display', 'DisplayController@index');
+
+
+
+//Route::get('/display', 'DisplayController@paginating');
